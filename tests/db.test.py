@@ -31,3 +31,4 @@ if __name__ == "__main__":
         items = CUR.fetchmany(5)
         for i in items:
             print(i)
+    CON.close()

@@ -110,3 +110,4 @@ if __name__ == "__main__":
     create_tables(CUR, CON)
     bootstrap_customers(CUR, CON, CUSTOMERS_CSV)
     bootstrap_orders(CUR, CON, ORDERS_CSV)
+    CON.close()
