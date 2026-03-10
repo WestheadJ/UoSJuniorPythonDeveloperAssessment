@@ -73,7 +73,6 @@ def bootstrap_customers(CUR, CON, csv_path):
             for row in reader
         ]
 
-    # Use CON (matching your global variable)
     CUR.executemany(
         "INSERT INTO Customers (customer_id, first_name, last_name, email, status) VALUES (?, ?, ?, ?, ?)",
         batch_data,
