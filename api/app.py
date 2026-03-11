@@ -72,7 +72,7 @@ def get_customer_orders(customer_id: int):
             "first_name": first_row["first_name"],
             "last_name": first_row["last_name"],
             "email": first_row["email"],
-            "status": first_row["cust_status"],
+            "status": first_row["customer_status"],
             "orders": [],
         }
         for row in rows:
