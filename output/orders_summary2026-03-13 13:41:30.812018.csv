@@ -1,0 +1,51 @@
+customer_id,name,email,customer_status,order_id,product,quantity,unit_price,order_total
+1,James Smith,james.smith@email.com,active,101,Wireless Mouse,1,25.0,25.0
+1,James Smith,james.smith@email.com,active,102,Mechanical Keyboard,1,85.0,85.0
+2,Maria Garcia,maria.garcia@test.net,active,103,HDMI Cable,2,12.5,25.0
+4,Linda Williams,linda.w@webmail.org,active,104,USB-C Hub,1,45.0,45.0
+6,Elizabeth Jones,e.jones@service.com,active,105,Webcam 1080p,1,55.0,55.0
+7,William Miller,william.m@test.net,active,106,Monitor Stand,1,30.0,30.0
+7,William Miller,william.m@test.net,active,107,Laptop Sleeve,1,20.0,20.0
+9,David Rodriguez,d.rodriguez@webmail.org,active,108,Desk Mat,1,15.0,15.0
+10,Richard Martinez,r.martinez@email.com,active,109,Bluetooth Speaker,1,40.0,40.0
+12,Joseph Lopez,j.lopez@test.net,active,110,Gaming Headset,1,75.0,75.0
+13,Thomas Gonzalez,t.gonzalez@provider.com,active,111,AA Batteries,4,2.5,10.0
+15,Charles Anderson,c.anderson@email.com,active,112,Smartphone Stand,2,10.0,20.0
+15,Charles Anderson,c.anderson@email.com,active,113,Charging Cable,3,8.0,24.0
+16,Karen Thomas,k.thomas@service.com,active,114,Office Chair,1,150.0,150.0
+18,Nancy Moore,n.moore@provider.com,active,115,Desk Lamp,1,35.0,35.0
+19,Matthew Jackson,m.jackson@webmail.org,active,116,Power Bank,1,50.0,50.0
+21,Anthony Lee,a.lee@service.com,active,117,Microphone,1,90.0,90.0
+22,Betty Perez,betty.p@test.net,active,118,Ethernet Cable,5,5.0,25.0
+24,Lisa White,lisa.white@webmail.org,active,119,Trackball Mouse,1,60.0,60.0
+25,Donald Harris,d.harris@email.com,active,120,External SSD,1,120.0,120.0
+27,Steven Clark,s.clark@test.net,active,121,Wifi Extender,1,45.0,45.0
+28,Sandra Ramirez,s.ramirez@provider.com,active,122,Printer Paper,10,6.0,60.0
+30,Ashley Robinson,a.robinson@email.com,active,123,USB Drive 64GB,3,12.0,36.0
+31,Andrew Walker,a.walker@service.com,active,124,Screen Cleaner,2,7.5,15.0
+33,Joshua Allen,j.allen@provider.com,active,125,Ring Light,1,25.0,25.0
+34,Donna King,d.king@webmail.org,active,126,Wrist Rest,1,18.0,18.0
+34,Donna King,d.king@webmail.org,active,127,Cable Ties,1,5.0,5.0
+36,Emily Scott,e.scott@service.com,active,128,Graphics Tablet,1,200.0,200.0
+37,Kevin Torres,k.torres@test.net,active,129,Keyboard Cover,1,10.0,10.0
+39,Brian Hill,b.hill@webmail.org,active,130,Bluetooth Adapter,1,15.0,15.0
+40,Amanda Flores,a.flores@email.com,active,131,Laptop Stand,1,40.0,40.0
+42,Melissa Adams,m.adams@test.net,active,132,Thermal Paste,2,9.0,18.0
+43,Edward Nelson,e.nelson@provider.com,active,133,Screwdriver Set,1,22.0,22.0
+45,Ronald Hall,r.hall@email.com,active,134,SD Card 128GB,1,30.0,30.0
+46,Stephanie Rivera,s.rivera@service.com,active,135,Quiet Keyboard,1,45.0,45.0
+48,Rebecca Mitchell,r.mitchell@provider.com,active,136,Vertical Mouse,1,40.0,40.0
+49,Jason Carter,j.carter@webmail.org,active,137,Anti-Glare Filter,1,28.0,28.0
+2,Maria Garcia,maria.garcia@test.net,active,138,Replacement Keys,1,15.0,15.0
+4,Linda Williams,linda.w@webmail.org,active,139,Headphone Hanger,1,12.0,12.0
+6,Elizabeth Jones,e.jones@service.com,active,140,Travel Mouse,1,22.0,22.0
+10,Richard Martinez,r.martinez@email.com,active,141,Monitor 24 inch,1,180.0,180.0
+12,Joseph Lopez,j.lopez@test.net,active,142,Mouse Pad XL,1,20.0,20.0
+16,Karen Thomas,k.thomas@service.com,active,143,Webcam Privacy Cover,5,2.0,10.0
+19,Matthew Jackson,m.jackson@webmail.org,active,144,Multi-plug Outlet,1,25.0,25.0
+22,Betty Perez,betty.p@test.net,active,145,Laptop Battery,1,65.0,65.0
+25,Donald Harris,d.harris@email.com,active,146,Drawing Pen,1,45.0,45.0
+30,Ashley Robinson,a.robinson@email.com,active,147,USB Extension,2,6.0,12.0
+34,Donna King,d.king@webmail.org,active,148,VGA to HDMI,1,14.0,14.0
+40,Amanda Flores,a.flores@email.com,active,149,Laptop Fan,1,35.0,35.0
+49,Jason Carter,j.carter@webmail.org,active,150,Soundbar,1,110.0,110.0
