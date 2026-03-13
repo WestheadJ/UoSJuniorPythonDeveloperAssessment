@@ -2,7 +2,7 @@ import csv
 import sqlite3
 from pathlib import Path
 from typing import Iterable, Tuple
-
+from db.connection import get_db_conn
 
 # Project paths
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -14,13 +14,6 @@ ORDERS_CSV = ROOT_DIR / "data" / "orders.csv"
 # ----------------------------
 # Database Connection Utility
 # ----------------------------
-
-
-def get_connection() -> sqlite3.Connection:
-    conn = sqlite3.connect(DB_PATH)
-    conn.execute("PRAGMA foreign_keys = ON;")
-    conn.row_factory = sqlite3.Row
-    return conn
 
 
 # ----------------------------
@@ -161,7 +154,7 @@ def ingest_orders(conn: sqlite3.Connection, csv_path: Path) -> None:
 
 
 def bootstrap_database() -> None:
-    with get_connection() as conn:
+    with get_db_conn() as conn:
         drop_tables(conn)
         create_schema(conn)
 

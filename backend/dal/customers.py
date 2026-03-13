@@ -1,6 +1,6 @@
 # dal/customers.py
 
-from ..db import get_db_conn
+from db.connection import get_db_conn
 
 CUSTOMER_ORDERS_QUERY = """
 SELECT 

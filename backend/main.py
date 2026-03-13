@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from .db import get_db_conn
+from db.connection import get_db_conn
 from .api.customers import router as customer_router
 
 app = FastAPI(title="Junior Developer Assessment API")
