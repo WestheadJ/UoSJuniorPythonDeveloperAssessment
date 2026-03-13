@@ -1,6 +1,6 @@
-from typing import List, Dict, Any
-from ..db import get_db_conn
+# dal/customers.py
 
+from ..db import get_db_conn
 
 CUSTOMER_ORDERS_QUERY = """
 SELECT 
@@ -20,7 +20,7 @@ WHERE c.customer_id = ?
 """
 
 
-def fetch_customer_orders(customer_id: int) -> List[Dict[str, Any]]:
+def get_customer_orders(customer_id: int):
     with get_db_conn() as conn:
         cursor = conn.cursor()
         cursor.execute(CUSTOMER_ORDERS_QUERY, (customer_id,))
