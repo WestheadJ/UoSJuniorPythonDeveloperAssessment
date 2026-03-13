@@ -1,54 +1,65 @@
-import pandas as pd
 import sqlite3
-import os
 from pathlib import Path
 from datetime import datetime
+import pandas as pd
 
-# --- Configuration & Paths ---
-# Ensures the script works regardless of where it's called from
+
+# ----------------------------
+# Paths / Configuration
+# ----------------------------
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "db" / "app.db"
 OUTPUT_DIR = BASE_DIR / "output"
 
 
-def run_etl_process():
-    """
-    Stand-alone ETL job:
-    Extracts active customer data, transforms via Pandas, and exports to CSV.
-    """
-    print("Starting ETL Job...")
+QUERY_ACTIVE_CUSTOMER_ORDERS = """
+SELECT 
+    c.customer_id,
+    c.first_name || ' ' || c.last_name AS name,
+    c.email,
+    c.customer_status,
+    o.order_id,
+    o.product,
+    o.quantity,
+    o.unit_price,
+    o.order_total
+FROM Customers c
+INNER JOIN Orders o
+    ON c.customer_id = o.customer_id
+WHERE c.customer_status = 'active'
+"""
 
-    if not OUTPUT_DIR.exists():
-        os.makedirs(OUTPUT_DIR)
+
+# ----------------------------
+# Extract
+# ----------------------------
+
+
+def extract_orders() -> pd.DataFrame:
+    """Extract active customer order data from SQLite."""
 
     try:
-        CON = sqlite3.connect(DB_PATH)
-        query = """
-            SELECT 
-                c.customer_id, 
-                c.first_name || ' ' || c.last_name AS name,
-                c.email, 
-                c.customer_status,
-                o.order_id, 
-                o.product,
-                o.quantity, 
-                o.unit_price,
-                o.order_total
-            FROM Customers c
-            INNER JOIN Orders o ON c.customer_id = o.customer_id
-            WHERE c.customer_status = 'active'
-        """
-        df = pd.read_sql_query(query, CON)
-        CON.close()
-    except Exception as e:
-        print(f"Database Error: {e}")
-        return
+        with sqlite3.connect(DB_PATH) as conn:
+            df = pd.read_sql_query(QUERY_ACTIVE_CUSTOMER_ORDERS, conn)
+        return df
+
+    except sqlite3.Error as err:
+        print(f"Database error: {err}")
+        return pd.DataFrame()
+
+
+# ----------------------------
+# Transform
+# ----------------------------
+
+
+def transform_customer_summary(df: pd.DataFrame) -> pd.DataFrame:
+    """Aggregate order data to produce per-customer summary."""
 
     if df.empty:
-        print("No data found for active customers with orders. Export cancelled.")
-        return
+        return df
 
-    # Aggregate data to get a per-customer summary
     summary = (
         df.groupby(["customer_id", "name", "email", "customer_status"])
         .agg(
@@ -59,21 +70,55 @@ def run_etl_process():
         .reset_index()
     )
 
-    try:
-        EXPORT_FILE = OUTPUT_DIR / str(
-            "customer_summary" + str(datetime.now()) + ".csv"
-        )
-        summary.to_csv(EXPORT_FILE, index=False)
-        print(f"Success! Exported {len(summary)} records to: {EXPORT_FILE}")
-    except Exception as e:
-        print(f"Export Failed: {e}")
+    return summary
+
+
+# ----------------------------
+# Load (Export)
+# ----------------------------
+
+
+def export_csv(df: pd.DataFrame, prefix: str) -> None:
+    """Export dataframe to timestamped CSV."""
+
+    OUTPUT_DIR.mkdir(exist_ok=True)
+
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    file_path = OUTPUT_DIR / f"{prefix}_{timestamp}.csv"
 
     try:
-        EXPORT_FILE = OUTPUT_DIR / str("orders_summary" + str(datetime.now()) + ".csv")
-        df.to_csv(EXPORT_FILE, index=False)
-        print(f"Success! Exported {len(summary)} records to: {EXPORT_FILE}")
-    except Exception as e:
-        print(f"Export Failed: {e}")
+        df.to_csv(file_path, index=False)
+        print(f"Exported {len(df)} records → {file_path}")
+
+    except Exception as err:
+        print(f"Export failed: {err}")
+
+
+# ----------------------------
+# ETL Orchestration
+# ----------------------------
+
+
+def run_etl_process() -> None:
+    """Run the full ETL pipeline."""
+
+    print("Starting ETL job...")
+
+    # Extract
+    orders_df = extract_orders()
+
+    if orders_df.empty:
+        print("No active customer order data found. ETL cancelled.")
+        return
+
+    # Transform
+    summary_df = transform_customer_summary(orders_df)
+
+    # Load
+    export_csv(summary_df, "customer_summary")
+    export_csv(orders_df, "orders_summary")
+
+    print("ETL job completed.")
 
 
 if __name__ == "__main__":
