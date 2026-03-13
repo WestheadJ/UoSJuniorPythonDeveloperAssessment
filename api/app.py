@@ -11,7 +11,7 @@ class OrderSchema(BaseModel):
     product: str
     quantity: int
     unit_price: float
-    status: str
+    customer_status: str
     order_date: str
 
 
@@ -20,7 +20,7 @@ class CustomerResponse(BaseModel):
     first_name: str
     last_name: str
     email: str
-    status: str
+
     orders: List[OrderSchema]
 
 
@@ -49,13 +49,13 @@ def health_check():
 
 @app.get("/customers/{customer_id}/orders", response_model=CustomerResponse)
 def get_customer_orders(customer_id: int):
-    with get_db_conn() as conn:
-        cursor = conn.cursor()
+    with get_db_conn() as CON:
+        cursor = CON.cursor()
 
         query = """
             SELECT 
-                c.customer_id, c.first_name, c.last_name, c.email, c.status as cust_status,
-                o.order_id, o.product, o.quantity, o.unit_price, o.status as order_status, o.order_date
+                c.customer_id, c.first_name, c.last_name, c.email, c.customer_status,
+                o.order_id, o.product, o.quantity, o.unit_price, o.order_date
             FROM Customers c
             LEFT JOIN Orders o ON c.customer_id = o.customer_id
             WHERE c.customer_id = ?
@@ -72,7 +72,7 @@ def get_customer_orders(customer_id: int):
             "first_name": first_row["first_name"],
             "last_name": first_row["last_name"],
             "email": first_row["email"],
-            "status": first_row["customer_status"],
+            "customer_status": first_row["customer_status"],
             "orders": [],
         }
         for row in rows:
@@ -83,7 +83,6 @@ def get_customer_orders(customer_id: int):
                         "product": row["product"],
                         "quantity": row["quantity"],
                         "unit_price": row["unit_price"],
-                        "status": row["order_status"],
                         "order_date": row["order_date"],
                     }
                 )

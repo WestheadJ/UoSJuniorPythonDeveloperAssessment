@@ -22,7 +22,7 @@ def create_customers_table(CUR, CON):
         first_name TEXT NOT NULL, 
         last_name TEXT NOT NULL,
         email TEXT NOT NULL UNIQUE,
-        status TEXT NOT NULL CHECK (status IN ('active', 'archived', 'inactive')));
+        customer_status TEXT NOT NULL CHECK (customer_status IN ('active', 'archived', 'inactive')))
 """
     )
     CON.commit()
@@ -30,17 +30,16 @@ def create_customers_table(CUR, CON):
 
 def create_orders_table(CUR, CON):
     print("Creating orders")
+
     CUR.execute(
-        """CREATE TABLE IF NOT EXISTS Orders (
-    order_id INTEGER PRIMARY KEY,
-    customer_id INTEGER NOT NULL,
+        """CREATE TABLE IF NOT EXISTS ORDERS (order_id INTEGER PRIMARY KEY,
+    customer_id INTEGER,
     product TEXT NOT NULL,
-    quantity INTEGER NOT NULL CHECK (quantity > 0),
-    unit_price REAL NOT NULL CHECK (unit_price >= 0),
-    status TEXT NOT NULL CHECK (status IN ('Pending', 'Shipped', 'Delivered', 'Cancelled')),
-    order_date TEXT NOT NULL, -- Format: YYYY-MM-DD
-    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id)
-);
+    quantity INTEGER NOT NULL,
+    unit_price REAL NOT NULL,
+    order_total REAL GENERATED ALWAYS AS (quantity * unit_price) VIRTUAL,
+    order_date TEXT DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (customer_id) REFERENCES Customers(customer_id))
 """
     )
     CON.commit()
@@ -68,13 +67,13 @@ def bootstrap_customers(CUR, CON, csv_path):
                 row["first_name"],
                 row["last_name"],
                 row["email"],
-                row["status"],
+                row["customer_status"],
             )
             for row in reader
         ]
 
     CUR.executemany(
-        "INSERT INTO Customers (customer_id, first_name, last_name, email, status) VALUES (?, ?, ?, ?, ?)",
+        "INSERT INTO Customers (customer_id, first_name, last_name, email, customer_status) VALUES (?, ?, ?, ?, ?)",
         batch_data,
     )
     CON.commit()
@@ -91,7 +90,6 @@ def bootstrap_orders(CUR, CON, csv_path):
                 row["product"],
                 int(row["quantity"]),
                 float(row["unit_price"]),
-                row["status"],
                 row["order_date"],
             )
             for row in reader
@@ -99,7 +97,7 @@ def bootstrap_orders(CUR, CON, csv_path):
 
     # Use CON (matching your global variable)
     CUR.executemany(
-        "INSERT INTO Orders (order_id,customer_id,product , quantity, unit_price, status,order_date) VALUES (?, ?, ?, ?, ?,?,?)",
+        "INSERT INTO Orders (order_id,customer_id,product , quantity, unit_price,order_date) VALUES (?, ?, ?, ?,?,?)",
         batch_data,
     )
     CON.commit()
