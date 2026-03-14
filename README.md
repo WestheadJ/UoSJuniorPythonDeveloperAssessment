@@ -75,3 +75,53 @@ Depending on what version you have installed you may have to use `pip` or `pip3`
 > pip install -r requirements.txt
 ```
 
+## To Start Running
+
+### Folder Structure
+The folder structure will start out like this:
+```bash
+.
+├── backend
+│   ├── api
+│   │   └── customers.py
+│   ├── dal
+│   │   └── customers.py
+│   ├── main.py
+│   ├── schemas
+│   │   └── customer.py
+│   └── services
+│       └── customer_service.py
+├── data
+│   ├── customers.csv
+│   └── orders.csv
+├── db
+│   └── connection.py
+└── scripts
+    ├── db_bootstrap.py
+    └── export_script.py
+```
+
+Everything is separated that the API code lives in backend, the database is separated and the standalone scripts live in their own folder. 
+
+### Setting Up the Database
+The database needs to be initialized first, so run the `db_bootstrap.py` file first this will create the database and import the data from `./data`. To run it from the _`root`_ directory:
+
+```python
+python Scripts/db_bootstrap.py
+```
+
+### Starting the API
+
+The API runs as a web service using `uvicorn`, it automatically updates from any changes and debugging is made easier. With `FastAPI` it creates it's own docs page at `http://127.0.0.1:8000/docs` which allows you to test endpoints like Postman but it's built-in and lays out all your endpoints for you.
+
+![FastAPI docs page](./docs/fastapi_docs.png)
+
+To spin the server up use:
+```bash
+uvicorn backend.main:app --reload
+```
+
+### Running the ETL script
+To get the results from the ETL script from root:
+```bash
+python .
