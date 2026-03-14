@@ -38,18 +38,18 @@ Customers and their Orders
 > - You are free to add any additional fields you think are useful.
 
 ### Task 2 - REST API
+#### Brief:
 > Build a simple API on the data you loaded in Task 1. The API should have an endpoint that returns Customer and Order data for a single Customer, looked up by their customer id.
 
 ### Task 3 - ETL Script
-> Write a standalone script that could be run on a schedule (for example, as a batch job or scheduled task). This script should query the database you created in Task 1 directly and carry out the following steps:
+#### Brief:
+> Write a standalone script that could be run on a schedule (for example, as a batch job or scheduled task). <br/> This script should query the database you created in Task 1 directly and carry out the following steps:
 > - Extract - Query the database to retrieve all active customers along with their orders
 > - Transform - Concatenate the first name and surname fields into a single name field. Calculate a total value for each order (quantity × unit price)
 > - Export - Write the results to a CSV file saved in an output folder locally
 
 ## How to Run the Application
-This was developed using Python `3.10`, due to the dependencies make sure you are running Python version `3.9`or later for a smooth experience. 
-
-Also make sure `pip` is fully updated.
+This was developed using Python `3.10`, due to the dependencies make sure you are running Python version `3.9`or later for a smooth experience. Also make sure `pip` is fully updated.
 
 ### Setting up the Environment
 
@@ -101,27 +101,27 @@ The folder structure will start out like this:
     └── export_script.py
 ```
 
-Everything is separated that the API code lives in backend, the database is separated and the standalone scripts live in their own folder. 
+Everything is separated that the API code lives in `./backend`, the database is separated and the standalone scripts live in their own folder. 
 
 ### Setting Up the Database
 The database needs to be initialized first, so run the `db_bootstrap.py` file first this will create the database and import the data from `./data`. To run it from the _`root`_ directory:
 
-```python
-python Scripts/db_bootstrap.py
+```bash
+> python Scripts/db_bootstrap.py
 ```
 
 ### Starting the API
 
-The API runs as a web service using `uvicorn`, it automatically updates from any changes and debugging is made easier. With `FastAPI` it creates it's own docs page at `http://127.0.0.1:8000/docs` which allows you to test endpoints like Postman but it's built-in and lays out all your endpoints for you.
+The API runs as a web service using `uvicorn`, it automatically updates from any changes and debugging is made easier. With `FastAPI` it creates it's own docs page at [http://127.0.0.1:8000/docs]("http://127.0.0.1:8000") which allows you to test endpoints like Postman but it's built-in and lays out all your endpoints for you.
 
 ![FastAPI docs page](./docs/fastapi_docs.png)
 
 To spin the server up use:
 ```bash
-uvicorn backend.main:app --reload
+> uvicorn backend.main:app --reload
 ```
 
 ### Running the ETL script
-To get the results from the ETL script from root:
+To get the results from the ETL script from _`root`_:
 ```bash
-python .
+> python ./Scripts/export_script.py
