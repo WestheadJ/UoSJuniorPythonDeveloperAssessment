@@ -47,4 +47,31 @@ Customers and their Orders
 > - Export - Write the results to a CSV file saved in an output folder locally
 
 ## How to Run the Application
+This was developed using Python `3.10`, due to the dependencies make sure you are running Python version `3.9`or later for a smooth experience. 
+
+Also make sure `pip` is fully updated.
+
+### Setting up the Environment
+
+#### Create an virtual environment:
+It's easier to contain and run these scripts off a virtual environment, to create one use this command in your terminal.
+``` bash
+> python -m venv env 
+```
+
+#### To Activate
+##### Windows:
+``` bash
+> env\Scripts\activate
+```
+##### Mac or Linux:
+```bash
+% . env/bin/activate
+```
+
+#### To Install Dependencies
+Depending on what version you have installed you may have to use `pip` or `pip3` but in this demonstration it will use `pip`
+```bash
+> pip install -r requirements.txt
+```
 
