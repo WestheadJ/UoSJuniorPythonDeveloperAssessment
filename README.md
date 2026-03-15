@@ -164,3 +164,11 @@ Although in the brief it was mentioned that the ETL script is to query the datab
 My final decision was a refactor after I created everything.
 ##### Thinking
 Mid-way through development, I recognized that my initial project structure did not align with `FastAPI` best practices. I made the conscious decision to refactor the codebase/ I separated schemas from business logic and properly managing the database connection lifecycle. This ensures the final submission and the final merge to main was not just functional, but maintainable and professional. 
+
+## Application & Data Flow
+
+### Stage 1 - Sample Data to the Database
+To ensure the application is scalable, the bootstrap process uses a Python Generator to ingest raw `.csv` data. By reading the file into a `dictionary` and using `yield` to stream rows as `Tuples`, the system creates a "conveyor belt" effect. This allows the database to be populated efficiently without loading the entire dataset into memory, protecting the application from memory overflows as the data scales.
+
+### Stage 2 - API, Fetch Customer by ID
+The API acts as a bridge and a gateway from a frontend to a the raw database rows.
