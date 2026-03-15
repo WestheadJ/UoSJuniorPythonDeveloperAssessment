@@ -173,7 +173,11 @@ The database needs to be initialized first, so run the `db_bootstrap.py` file fi
 
 The API runs as a web service using `uvicorn`, it automatically updates from any changes and debugging is made easier. With `FastAPI` it creates it's own docs page at [`http://127.0.0.1:8000/docs`](http://127.0.0.1:8000) which allows you to test endpoints like Postman but it's built-in and lays out all your endpoints for you.
 
-![FastAPI docs page](./docs/fastapi_docs.png)
+#### Example Photos of the Docs Page
+![FastAPI docs page](./docs/docs-view.png)
+![FastAPI docs page for customers interaction](./docs/docs-view-customers.png)
+![FastAPI docs page](./docs/docs-view-orders.png)
+
 
 To spin the server up use:
 ```bash
