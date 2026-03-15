@@ -170,5 +170,11 @@ Mid-way through development, I recognized that my initial project structure did 
 ### Stage 1 - Sample Data to the Database
 To ensure the application is scalable, the bootstrap process uses a Python Generator to ingest raw `.csv` data. By reading the file into a `dictionary` and using `yield` to stream rows as `Tuples`, the system creates a "conveyor belt" effect. This allows the database to be populated efficiently without loading the entire dataset into memory, protecting the application from memory overflows as the data scales.
 
-### Stage 2 - API, Fetch Customer by ID
-The API acts as a bridge and a gateway from a frontend to a the raw database rows.
+### Stage 2 - The API 
+The API acts as a bridge and a gateway from a frontend to the raw database rows. 
+
+The API uses a data access layer, this contains the SQL and the fetch commands, the API requests a specific data request using the relevant service, the data access layer then connects with the database and gets the relevant data with the relevant SQL. With a DAL you can separate each entity up and the queries relevant to said entity. Depending on what is querying the database. 
+
+Luckily `FastAPI` allows for splitting this up with custom routes. I split the API endpoints into `/customers/{customer_id}/orders` this is because it is under the customers domain. and `/customers/orders/summary 
+
+### Stage 3 - ETL Export Script

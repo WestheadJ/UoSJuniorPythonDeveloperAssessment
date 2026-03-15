@@ -1,10 +1,12 @@
-from fastapi import FastAPI
+from fastapi import FastAPI  # type: ignore
 from db.connection import get_db_conn
 from .api.customers import router as customer_router
+from .api.orders import router as orders_router
 
 app = FastAPI(title="Junior Developer Assessment API")
 
 app.include_router(customer_router)
+app.include_router(orders_router)
 
 
 @app.get("/health")
