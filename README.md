@@ -107,7 +107,7 @@ Everything is separated that the API code lives in `./backend`, the database is 
 The database needs to be initialized first, so run the `db_bootstrap.py` file first this will create the database and import the data from `./data`. To run it from the _`root`_ directory:
 
 ```bash
-> python Scripts/db_bootstrap.py
+> python -m Scripts/db_bootstrap.py
 ```
 
 ### Starting the API
@@ -122,6 +122,45 @@ To spin the server up use:
 ```
 
 ### Running the ETL script
-To get the results from the ETL script from _`root`_:
+To get the results from the ETL run `export_script.py` script from _`root`_:
 ```bash
 > python ./Scripts/export_script.py
+```
+
+The results will go to 2 timestamped files in `./output` as:
+- `./output/customer_summary_<timestamp>.csv `
+- `./output.orders_summary_<timestamp>.csv`
+
+
+## My Choices
+### Technology Stack Selection:
+* **FastAPI & Uvicorn**: I chose `FastAPI` over alternatives like `Flask` for its modern, asynchronous capabilities and native integration with `Pydantic` for data validation. Since I was under the assumption the team is moving towards `FastAPI`, it ensures the solution is aligned with your future technical direction. `Uvicorn` was selected as the `ASGI` server to provide the high-performance execution `FastAPI` is known for.
+- **SQLite**: For the requirements of this project, `SQLite` is the ideal choice. It is lightweight, requires zero configuration, and is built in `C,` providing high-speed performance for embedded applications. Its native integration with `Python's` `sqlite3` and `Pandas `makes it a robust "single-source-of-truth" for this assessment without the overhead of a managed database server.
+- **Pandas**: While raw SQL can handle many tasks, `Pandas` was chosen for the ETL process due to its industry-standard status and powerful data manipulation capabilities. It allows for highly readable transformations and vectorized operations, making the code more maintainable and scalable for future data science requirements.
+### Key Decisions & Thinking
+#### Architecture Planning & Designing
+I made the decision to start out by planning and creating an ERD and API documentation. 
+##### Thinking:
+I believe that a "design-first" approach makes a project easier to program, debug, and explain. It's what I was taught and part of the job. Planning ahead gives you a strong foundation and causes less oversight as you program. It also allows you to define your scope better, and create a better understanding of the project.
+
+#### Reducing Round-Trips & Edge Cases
+I made the decision to use a `LEFT JOIN` for getting the orders of "active" customers. 
+##### Thinking:
+The decision to use a `LEFT JOIN` removes the round trip to the database, on bigger datasets and on more critical systems, this can be a major breaking point, going back and forth to the database is computational and bandwidth overload. Additionally using a `LEFT JOIN` instead of an `INNER JOIN` means any active users, who have 0 orders show up on the report to or else the `NULLs` would of hidden them records.
+
+#### ETL Logic to DB: 
+I made the decision to implement the `order_total` as a Generated Column in the `SQLite` schema, filtering active customers in a query, and concatenating the name in a single query.
+
+##### Thinking: 
+It is always more efficient to "filter early" at the database level. This reduces the memory footprint of the `Python` environment and minimizes the amount of data being transferred between the DB and the application.
+Additionally, calculating totals at the database level ensures data integrity across all platforms. Whether the data is accessed via the `FastAPI` endpoint or the `Pandas` ETL script, the math remains consistent and "baked-in," preventing "faffing" with manual calculations in the application layer.
+
+#### ETL to API Endpoint
+I decided to implement the ETL feature in to the API with 3 endpoints for 3 ways to consume and transform the data. 
+##### Thinking
+Although in the brief it was mentioned that the ETL script is to query the database _**directly**_ and export it to a CSV, I recognized that while a CSV is excellent for flat data storage, it cannot cleanly represent the "One-to-Many" relationship between a customer and their orders.By offering a nested JSON response for the detailed view, I'm giving the consumer a choice. They can ingest a lightweight summary for quick lists, or "opt-in" to the full nested history. This structure is much easier for a frontend developer to map over and eliminates the need for them to write their own grouping logic
+
+#### Refactoring
+My final decision was a refactor after I created everything.
+##### Thinking
+Mid-way through development, I recognized that my initial project structure did not align with `FastAPI` best practices. I made the conscious decision to refactor the codebase/ I separated schemas from business logic and properly managing the database connection lifecycle. This ensures the final submission and the final merge to main was not just functional, but maintainable and professional. 
