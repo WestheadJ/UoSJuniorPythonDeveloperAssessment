@@ -59,6 +59,8 @@ work. I have chose Python using 3 main libraries these are:
 - `SQLite`
 - `Pandas`
 
+I also have documents for planning and assets in `./docs`.
+
 ## Tasks
 
 - Task 1 - Database Setup
