@@ -1,5 +1,8 @@
-<!-- TOC start (generated with https://github.com/derlin/bitdowntoc) -->
 
+# UoS Junior Python Developer Assessment
+This repository contains my submission for the University of Sheffield Junior Python Developer assessment.
+
+This README contains:
 - [UoS Junior Python Developer Assessment](#uos-junior-python-developer-assessment)
    * [Introduction](#introduction)
    * [Tasks](#tasks)
@@ -47,13 +50,6 @@
          - [JWT Tokens](#jwt-tokens)
          - [Rate Limiting](#rate-limiting)
          - [Gateway Filtering](#gateway-filtering)
-
-<!-- TOC end -->
-
-# UoS Junior Python Developer Assessment
-This repository contains my submission for the University of Sheffield Junior Python Developer assessment.
-
-This README contains:
 
 ## Introduction
 This assessment is designed to evaluate my core development and thinking skills
