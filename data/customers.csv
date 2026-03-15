@@ -1,4 +1,4 @@
-customer_id,first_name,last_name,email,status
+customer_id,first_name,last_name,email,customer_status
 1,James,Smith,james.smith@email.com,active
 2,Maria,Garcia,maria.garcia@test.net,active
 3,Robert,Johnson,r.johnson@provider.com,inactive

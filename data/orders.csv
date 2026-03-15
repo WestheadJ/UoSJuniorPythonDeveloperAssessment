@@ -1,51 +1,51 @@
-order_id,customer_id,product,quantity,unit_price,status,order_date
-101,1,Wireless Mouse,1,25.0,Shipped,2026-03-10
-102,1,Mechanical Keyboard,1,85.0,Delivered,2026-02-15
-103,2,HDMI Cable,2,12.5,Delivered,2026-01-20
-104,4,USB-C Hub,1,45.0,Pending,2026-03-08
-105,6,Webcam 1080p,1,55.0,Shipped,2026-03-01
-106,7,Monitor Stand,1,30.0,Delivered,2026-02-10
+order_id,customer_id,product,quantity,unit_price,order_date
+101,1,Wireless Mouse,1,25.0,2026-03-10
+102,1,Mechanical Keyboard,1,85.0,2026-02-15
+103,2,HDMI Cable,2,12.5,2026-01-20
+104,4,USB-C Hub,1,45.0,2026-03-08
+105,6,Webcam 1080p,1,55.0,2026-03-01
+106,7,Monitor Stand,1,30.0,2026-02-10
 107,7,Laptop Sleeve,1,20.0,Cancelled,2026-02-12
-108,9,Desk Mat,1,15.0,Delivered,2026-01-05
-109,10,Bluetooth Speaker,1,40.0,Shipped,2026-03-05
-110,12,Gaming Headset,1,75.0,Pending,2026-03-09
-111,13,AA Batteries,4,2.5,Delivered,2026-02-28
-112,15,Smartphone Stand,2,10.0,Delivered,2026-01-15
-113,15,Charging Cable,3,8.0,Delivered,2026-01-16
-114,16,Office Chair,1,150.0,Shipped,2026-03-02
-115,18,Desk Lamp,1,35.0,Delivered,2026-02-20
-116,19,Power Bank,1,50.0,Pending,2026-03-07
-117,21,Microphone,1,90.0,Delivered,2026-01-30
-118,22,Ethernet Cable,5,5.0,Delivered,2026-02-01
-119,24,Trackball Mouse,1,60.0,Shipped,2026-03-04
-120,25,External SSD,1,120.0,Pending,2026-03-09
-121,27,Wifi Extender,1,45.0,Delivered,2026-01-22
-122,28,Printer Paper,10,6.0,Delivered,2026-02-14
-123,30,USB Drive 64GB,3,12.0,Shipped,2026-03-06
-124,31,Screen Cleaner,2,7.5,Delivered,2026-02-18
-125,33,Ring Light,1,25.0,Pending,2026-03-08
-126,34,Wrist Rest,1,18.0,Delivered,2026-01-10
-127,34,Cable Ties,1,5.0,Delivered,2026-01-11
-128,36,Graphics Tablet,1,200.0,Shipped,2026-03-01
-129,37,Keyboard Cover,1,10.0,Delivered,2026-02-05
-130,39,Bluetooth Adapter,1,15.0,Pending,2026-03-09
-131,40,Laptop Stand,1,40.0,Delivered,2026-01-25
-132,42,Thermal Paste,2,9.0,Delivered,2026-02-12
-133,43,Screwdriver Set,1,22.0,Shipped,2026-03-03
-134,45,SD Card 128GB,1,30.0,Pending,2026-03-10
-135,46,Quiet Keyboard,1,45.0,Delivered,2026-01-19
-136,48,Vertical Mouse,1,40.0,Shipped,2026-03-02
-137,49,Anti-Glare Filter,1,28.0,Delivered,2026-02-25
-138,2,Replacement Keys,1,15.0,Delivered,2026-01-21
-139,4,Headphone Hanger,1,12.0,Pending,2026-03-09
-140,6,Travel Mouse,1,22.0,Shipped,2026-03-05
-141,10,Monitor 24 inch,1,180.0,Pending,2026-03-10
-142,12,Mouse Pad XL,1,20.0,Delivered,2026-01-08
-143,16,Webcam Privacy Cover,5,2.0,Delivered,2026-02-22
-144,19,Multi-plug Outlet,1,25.0,Shipped,2026-03-06
+108,9,Desk Mat,1,15.0,2026-01-05
+109,10,Bluetooth Speaker,1,40.0,2026-03-05
+110,12,Gaming Headset,1,75.0,2026-03-09
+111,13,AA Batteries,4,2.5,2026-02-28
+112,15,Smartphone Stand,2,10.0,2026-01-15
+113,15,Charging Cable,3,8.0,2026-01-16
+114,16,Office Chair,1,150.0,2026-03-02
+115,18,Desk Lamp,1,35.0,2026-02-20
+116,19,Power Bank,1,50.0,2026-03-07
+117,21,Microphone,1,90.0,2026-01-30
+118,22,Ethernet Cable,5,5.0,2026-02-01
+119,24,Trackball Mouse,1,60.0,2026-03-04
+120,25,External SSD,1,120.0,2026-03-09
+121,27,Wifi Extender,1,45.0,2026-01-22
+122,28,Printer Paper,10,6.0,2026-02-14
+123,30,USB Drive 64GB,3,12.0,2026-03-06
+124,31,Screen Cleaner,2,7.5,2026-02-18
+125,33,Ring Light,1,25.0,2026-03-08
+126,34,Wrist Rest,1,18.0,2026-01-10
+127,34,Cable Ties,1,5.0,2026-01-11
+128,36,Graphics Tablet,1,200.0,2026-03-01
+129,37,Keyboard Cover,1,10.0,2026-02-05
+130,39,Bluetooth Adapter,1,15.0,2026-03-09
+131,40,Laptop Stand,1,40.0,2026-01-25
+132,42,Thermal Paste,2,9.0,2026-02-12
+133,43,Screwdriver Set,1,22.0,2026-03-03
+134,45,SD Card 128GB,1,30.0,2026-03-10
+135,46,Quiet Keyboard,1,45.0,2026-01-19
+136,48,Vertical Mouse,1,40.0,2026-03-02
+137,49,Anti-Glare Filter,1,28.0,2026-02-25
+138,2,Replacement Keys,1,15.0,2026-01-21
+139,4,Headphone Hanger,1,12.0,2026-03-09
+140,6,Travel Mouse,1,22.0,2026-03-05
+141,10,Monitor 24 inch,1,180.0,2026-03-10
+142,12,Mouse Pad XL,1,20.0,2026-01-08
+143,16,Webcam Privacy Cover,5,2.0,2026-02-22
+144,19,Multi-plug Outlet,1,25.0,2026-03-06
 145,22,Laptop Battery,1,65.0,Cancelled,2026-02-03
-146,25,Drawing Pen,1,45.0,Delivered,2026-02-28
-147,30,USB Extension,2,6.0,Delivered,2026-01-15
-148,34,VGA to HDMI,1,14.0,Shipped,2026-03-04
-149,40,Laptop Fan,1,35.0,Pending,2026-03-08
-150,49,Soundbar,1,110.0,Delivered,2026-02-10
+146,25,Drawing Pen,1,45.0,2026-02-28
+147,30,USB Extension,2,6.0,2026-01-15
+148,34,VGA to HDMI,1,14.0,2026-03-04
+149,40,Laptop Fan,1,35.0,2026-03-08
+150,49,Soundbar,1,110.0,2026-02-10
